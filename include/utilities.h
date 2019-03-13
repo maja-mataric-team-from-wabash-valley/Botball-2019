@@ -11,5 +11,7 @@
 
 void press_a_to_continue();
 void press();
+void servo(int port, int position);
+void move_servo(int start, int change, int finish, int delay, int servo, int ud);
 
 #endif //BOTBALL_2019_UTILITIES_H
