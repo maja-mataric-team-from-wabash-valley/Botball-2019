@@ -2,7 +2,7 @@
 #include "utilities.h"
 #include "create.h"
 
-int main() {
+int create_main() {
     start_create();
 
     spin(90, 25);
