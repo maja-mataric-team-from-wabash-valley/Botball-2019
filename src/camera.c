@@ -1,7 +1,7 @@
 /*#include <kipr/botball.h>
 
 int distanceinches();
-int main()
+int camera_main()
 {
     int i;
     int area, totalarea=0, areacount=0;
@@ -65,4 +65,4 @@ int distanceinches()
     }
     return 0;
 }
- */
+*/

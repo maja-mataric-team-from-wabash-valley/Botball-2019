@@ -1,4 +1,4 @@
-//
+/*
 // Created by David Mutchler on 2019-03-06.
 //
 
@@ -30,7 +30,7 @@ void lower_basket();
 void degrees_left(float inch, int power);
 
 
-/*
+
 int main()
 {
     int power, inches;
@@ -49,7 +49,7 @@ int main()
     getchar();
     return 236;
 }
- */
+ 
 
 void time_forward(int left, int right, int ms, int power)
 {
@@ -112,3 +112,4 @@ void degrees_left(float inch, int power)
     move_relative_position(LEFTMOTOR, power, -inch*MSPERINCH);
     move_relative_position(RIGHTMOTOR, power, -inch*MSPERINCH);
 }
+*/
