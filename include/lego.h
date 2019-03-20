@@ -6,9 +6,9 @@
 
 #define MOTOR_FOR_TICKS  LEFT_MOTOR
 
-#define TICKS_PER_INCH              200.0  // TODO: Find this empirically.
+#define TICKS_PER_INCH              228.0  // TODO: Find this empirically.
 
-#define TICKS_PER_DEGREE              7.6  // TODO: Find this empirically.
+#define TICKS_PER_DEGREE             11.5  // TODO: Find this empirically.
 #define TICKS_OVERSHOOT_AT_100       10    // TODO: Find this empirically.
 #define SLEEP_MSECONDS_PER_ITERATION 10    // TODO: Try 0 (no sleep).
 
