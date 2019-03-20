@@ -2,8 +2,7 @@
 #include "utilities.h"
 #include "create.h"
 
-int main()
-{
+int main() {
     start_create();
 
     spin(90, 25);
@@ -11,3 +10,4 @@ int main()
     end_create();
 
     return 0;
+}
