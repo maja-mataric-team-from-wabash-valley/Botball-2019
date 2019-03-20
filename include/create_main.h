@@ -1,4 +1,4 @@
 #ifndef BOTBALL_2019_CREATE_MAIN_H
 #define BOTBALL_2019_CREATE_MAIN_H
-
+int create_main();
 #endif //BOTBALL_2019_CREATE_MAIN_H
