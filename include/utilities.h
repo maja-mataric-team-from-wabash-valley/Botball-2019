@@ -13,5 +13,6 @@ void press_a_to_continue();
 void press();
 void servo(int port, int position);
 void move_servo(int start, int change, int finish, int delay, int servo, int ud);
+void both_servos(int port1, int port2, int desired_position1);
 
 #endif //BOTBALL_2019_UTILITIES_H

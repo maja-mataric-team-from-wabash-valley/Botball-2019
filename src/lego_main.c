@@ -15,7 +15,7 @@ extern int PRESS_A;
 #define L_SERVO_ARM_START 230
 
 void lego_main() {
-    PRESS_A = FALSE;
+    PRESS_A = TRUE;
     set_servo_position(R_SERVO_ARM,R_SERVO_ARM_DOWN);
     set_servo_position(L_SERVO_ARM,L_SERVO_ARM_DOWN);
     set_servo_position(SERVO_GATE,SERVO_GATE_DOWN);

@@ -51,6 +51,6 @@ int spin(float degrees, int power) {
     msleep(1000);
     position = get_create_total_angle();
     printf("Actual position:  %6d\n", position);
-    press();
+   // press();
     return position;
 }

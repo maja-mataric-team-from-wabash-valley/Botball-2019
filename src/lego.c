@@ -121,7 +121,7 @@ int spin2(float degrees, int speed) {
     msleep(1000);
     position = get_motor_position_counter(MOTOR_FOR_TICKS);
     printf("Actual position:  %6d\n", position);
-    press();
+    //press();
     return position;}
 
 // Uses gyro_z and power.
@@ -153,5 +153,5 @@ int spin3(float degrees, int power) {
     msleep(1000);
     position = get_motor_position_counter(MOTOR_FOR_TICKS);
     printf("Actual position:  %6d\n", position);
-    press();
+   // press();
     return position;}
