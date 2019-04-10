@@ -21,11 +21,27 @@ void end_create() {
     printf("Disconnected!");
 }
 
-int spin(float degrees, int power) {
+int CForward(float inches, int power) {
+    return create_forward(inches, power);
+}
+
+int CBackward(float inches, int power) {
+    return CForward(-inches, power);
+}
+
+int CLeft(float degrees, int power) {
+    return create_spin(degrees, power);
+}
+
+int CRight(float degrees, int power) {
+    return CLeft(-degrees, power);
+}
+
+int create_spin(float degrees, int power) {
     float target_position, overshoot, desired_position;
     int position;
 
-    overshoot = DEGREES_OVERSHOOT_AT_FULL_POWER * abs(power) / 100;
+    overshoot = CREATE_DEGREES_OVERSHOOT_AT_FULL_POWER * abs(power) / 100;
     target_position = abs(degrees);
     printf("Target position: %8.1f\n", target_position);
     desired_position = target_position - overshoot;
@@ -33,9 +49,9 @@ int spin(float degrees, int power) {
 
     set_create_total_angle(0);
     if (degrees > 0) {
-        create_spin_CCW((int) (SPEED_AT_MAX_POWER * power / 100.0));
+        create_spin_CCW((int) (CREATE_SPEED_AT_MAX_POWER * power / 100.0));
     } else {
-        create_spin_CW((int) (SPEED_AT_MAX_POWER * power / 100.0));
+        create_spin_CW((int) (CREATE_SPEED_AT_MAX_POWER * power / 100.0));
     }
     while (TRUE) {
         position = get_create_total_angle();
@@ -43,8 +59,8 @@ int spin(float degrees, int power) {
             create_stop();
             break;
         }
-        if (SLEEP_MSECONDS_PER_ITERATION > 0) {
-            msleep(SLEEP_MSECONDS_PER_ITERATION);
+        if (CREATE_SLEEP_MSECONDS_PER_ITERATION > 0) {
+            msleep(CREATE_SLEEP_MSECONDS_PER_ITERATION);
         }
     }
 
@@ -54,3 +70,68 @@ int spin(float degrees, int power) {
     press();
     return position;
 }
+
+int create_forward(float inches, int power) {
+    float target_position, overshoot, desired_position;
+    int position;
+
+    overshoot = CREATE_INCHES_OVERSHOOT_AT_FULL_POWER * abs(power) / 100;
+    target_position = 10 * abs(inches) * CENTIMETERS_PER_INCH;
+    printf("Target position: %8.1f\n", target_position);
+    desired_position = target_position - overshoot;
+    printf("minus overshoot: %8.1f\n", desired_position);
+
+    set_create_distance(0);
+    if (inches > 0) {
+        create_drive_straight((int) (CREATE_SPEED_AT_MAX_POWER * power / 100.0));
+    } else {
+        create_drive_straight((int) (-CREATE_SPEED_AT_MAX_POWER * power / 100.0));
+    }
+    while (TRUE) {
+        position = get_create_distance();
+        if (abs(position) >= desired_position) {
+            create_stop();
+            break;
+        }
+        if (CREATE_SLEEP_MSECONDS_PER_ITERATION > 0) {
+            msleep(CREATE_SLEEP_MSECONDS_PER_ITERATION);
+        }
+    }
+
+    msleep(1000);
+    position = get_create_total_angle();
+    printf("Actual position:  %6d\n", position);
+    press();
+    return position;
+}
+
+void follow_line(int NSport, int Sport)
+{
+   int j, left, right;
+   float target_position;
+   set_create_distance(0);
+    j=9999;
+   while(target_position <= 52){
+       left = analog(NSport);
+       right = analog(Sport);
+       if(left < 1250 && right < 1250){
+           create_drive_direct(-30, -100);
+       }
+       else if(left >= 1250 && right < 1250){
+           create_drive_direct(-100, -30);
+       }
+       else if(left < 1250 && right >= 1250){
+           create_drive_direct(-100, -30);
+       }
+       else {
+           create_drive_direct(-100, -110);
+       }
+       msleep(20);
+       j = get_create_distance();
+       target_position = (.1 * abs(j)) / CENTIMETERS_PER_INCH;
+   }
+    create_stop();
+}
+           
+    
+    
